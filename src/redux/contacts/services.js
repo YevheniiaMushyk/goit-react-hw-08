@@ -1,4 +1,4 @@
-import instance from "../auth/operations";
+import { instance } from "../auth/services";
 
 export const requestGetContacts = async () => {
 	const { data } = await instance.get("/contacts");
