@@ -1,8 +1,5 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { requestGetContacts, requestAddContact, requestDeleteContact } from "./services";
-
-axios.defaults.baseURL = "https://660f820f356b87a55c51852b.mockapi.io/";
 
 // GET @ /contacts
 export const apiGetUserContacts = createAsyncThunk("phonebook/get", async (_, thunkAPI) => {
