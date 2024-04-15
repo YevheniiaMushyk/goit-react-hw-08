@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { apiLoginUser, apiLogoutUser, apiRefreshUser, apiRegisterUser } from "./operations";
+import { login, logout, refresh, register } from "./operations";
 
 const INITIAL_STATE = {
 	user: {
@@ -18,42 +18,42 @@ const authSlice = createSlice({
 	initialState: INITIAL_STATE,
 	extraReducers: (builder) =>
 		builder
-			.addCase(apiRegisterUser.fulfilled, (state, action) => {
+			.addCase(register.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.userData = action.payload.user;
+				state.user = action.payload.user;
 				state.token = action.payload.token;
-				state.isSignedIn = true;
+				state.isLoggedIn = true;
 			})
-			.addCase(apiLoginUser.fulfilled, (state, action) => {
+			.addCase(login.fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.userData = action.payload.user;
+				state.user = action.payload.user;
 				state.token = action.payload.token;
-				state.isSignedIn = true;
+				state.isLoggedIn = true;
 			})
-			.addCase(apiLogoutUser.fulfilled, () => {
+			.addCase(logout.fulfilled, () => {
 				return INITIAL_STATE;
 			})
 
 			//   REFRESH
-			.addCase(apiRefreshUser.pending, (state) => {
+			.addCase(refresh.pending, (state) => {
 				state.isRefreshing = true;
 				state.isError = false;
 			})
-			.addCase(apiRefreshUser.fulfilled, (state, action) => {
+			.addCase(refresh.fulfilled, (state, action) => {
 				state.isRefreshing = false;
-				state.userData = action.payload;
-				state.isSignedIn = true;
+				state.user = action.payload;
+				state.isLoggedIn = true;
 			})
-			.addCase(apiRefreshUser.rejected, (state) => {
+			.addCase(refresh.rejected, (state) => {
 				state.isRefreshing = false;
 				state.isError = true;
 			})
 
-			.addMatcher(isAnyOf(apiRegisterUser.pending, apiLoginUser.pending, apiLogoutUser.pending), (state) => {
+			.addMatcher(isAnyOf(register.pending, login.pending, logout.pending), (state) => {
 				state.isLoading = true;
 				state.isError = false;
 			})
-			.addMatcher(isAnyOf(apiRegisterUser.rejected, apiLoginUser.rejected, apiLogoutUser.rejected), (state) => {
+			.addMatcher(isAnyOf(register.rejected, login.rejected, logout.rejected), (state) => {
 				state.isLoading = false;
 				state.isError = true;
 			}),

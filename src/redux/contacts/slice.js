@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addContact, fetchContacts, deleteContact } from "../contactsOps";
+import { apiGetUserContacts, apiAddUserContact, apiDeleteUserContact } from "./operations";
 import { createSelector } from "@reduxjs/toolkit";
-import { selectContacts, selectFilterName } from "../selectors";
+import { selectContacts } from "./selectors";
+import { selectFilterName } from "../filters/selectors";
 
 const handlePending = (state) => {
 	state.isLoading = true;
@@ -21,28 +22,28 @@ const contactsSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchContacts.pending, handlePending)
-			.addCase(fetchContacts.fulfilled, (state, action) => {
+			.addCase(apiGetUserContacts.pending, handlePending)
+			.addCase(apiGetUserContacts.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 				state.items = action.payload;
 			})
-			.addCase(fetchContacts.rejected, handleRejected)
-			.addCase(addContact.pending, handlePending)
-			.addCase(addContact.fulfilled, (state, action) => {
+			.addCase(apiGetUserContacts.rejected, handleRejected)
+			.addCase(apiAddUserContact.pending, handlePending)
+			.addCase(apiAddUserContact.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 				state.items.push(action.payload);
 			})
-			.addCase(addContact.rejected, handleRejected)
-			.addCase(deleteContact.pending, handlePending)
-			.addCase(deleteContact.fulfilled, (state, action) => {
+			.addCase(apiAddUserContact.rejected, handleRejected)
+			.addCase(apiDeleteUserContact.pending, handlePending)
+			.addCase(apiDeleteUserContact.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 				const index = state.items.findIndex((contact) => contact.id === action.payload.id);
 				state.items.splice(index, 1);
 			})
-			.addCase(deleteContact.rejected, handleRejected);
+			.addCase(apiDeleteUserContact.rejected, handleRejected);
 	},
 });
 
