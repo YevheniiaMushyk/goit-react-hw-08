@@ -5,7 +5,7 @@ import css from "./UserMenu.module.css";
 
 export const UserMenu = () => {
 	const dispatch = useDispatch();
-	const { user } = useSelector(selectUserData);
+	const user = useSelector(selectUserData);
 
 	return (
 		<div className={css.wrapper}>

@@ -10,8 +10,6 @@ import { selectContacts, selectError, selectIsLoading } from "../../redux/contac
 export default function ContactsPage() {
 	const dispatch = useDispatch();
 	const items = useSelector(selectContacts);
-	console.log("items: ", items);
-
 	const isLoading = useSelector(selectIsLoading);
 	const error = useSelector(selectError);
 
@@ -26,7 +24,7 @@ export default function ContactsPage() {
 			<SearchBox />
 			{isLoading && <p>Loading contacts...</p>}
 			{error && <p>{error}</p>}
-			{items.length > 0 && <Contacts />}
+			{/* {items.length > 0 && <Contacts />} */}
 			<Contacts />
 		</>
 	);
