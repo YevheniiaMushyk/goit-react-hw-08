@@ -42,7 +42,7 @@ const ContactForm = () => {
 					<label className={css.label} htmlFor={nameFieldId}>
 						Name
 					</label>
-					<Field className={css.field} id={nameFieldId} type="text" name="name" placeholder="Alex Mihalich" />
+					<Field className={css.field} id={nameFieldId} type="text" name="name" placeholder="William Smith" />
 					<ErrorMessage className={css.errorMsg} name="name" component="span" />
 				</div>
 				<div>

@@ -28,20 +28,22 @@ const LoginForm = () => {
 		<Formik validationSchema={UserRegisterSchema} initialValues={INITIAL_FORM_DATA} onSubmit={handleSubmit}>
 			<Form className={css.form}>
 				<h2 className={css.formTitle}>Login</h2>
-
-				<label className={css.label}>
-					<span className={css.labelText}>Email:</span>
-					<Field className={css.formInput} placeholder="alex@patron.com" type="email" name="email" />
+				<div>
+					<label className={css.label} htmlFor="mailField">
+						Email:
+					</label>
+					<Field className={css.field} id="mailField" placeholder="wilsmith@fox.com" type="email" name="email" />
 					<ErrorMessage className={css.errorMsg} name="email" component="span" />
-				</label>
-				<label className={css.label}>
-					<span className={css.labelText}>Password:</span>
-					<Field className={css.formInput} placeholder="Enter your password" type="password" name="password" />
+				</div>
+				<div>
+					<label className={css.label} htmlFor="passwordField">
+						Password:
+					</label>
+					<Field className={css.field} id="passwordField" placeholder="Enter your password" type="password" name="password" />
 					<ErrorMessage className={css.errorMsg} name="password" component="span" />
-				</label>
-
-				<button className={css.submitBtn} type="submit" title="Click to register user" aria-label="Add new email">
-					LogIn
+				</div>
+				<button className={css.button} type="submit" title="Click to log in user" aria-label="Log in user">
+					Log In
 				</button>
 			</Form>
 		</Formik>

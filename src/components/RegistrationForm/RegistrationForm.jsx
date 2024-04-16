@@ -24,6 +24,7 @@ const INITIAL_FORM_DATA = {
 
 const RegisterForm = () => {
 	const dispatch = useDispatch();
+
 	const handleSubmit = (data, formActions) => {
 		console.log("data Register: ", data);
 		dispatch(register(data));
@@ -35,24 +36,29 @@ const RegisterForm = () => {
 		<Formik validationSchema={UserRegisterSchema} initialValues={INITIAL_FORM_DATA} onSubmit={handleSubmit}>
 			<Form className={css.form}>
 				<h2 className={css.formTitle}>Register</h2>
-
-				<label className={css.label}>
-					<span className={css.labelText}>User name:</span>
-					<Field className={css.formInput} placeholder="Alex Mihalich" type="text" name="name" />
+				<div>
+					<label className={css.label} htmlFor="nameField">
+						User name:
+					</label>
+					<Field className={css.field} id="nameField" placeholder="William Smith" type="text" name="name" />
 					<ErrorMessage className={css.errorMsg} name="name" component="span" />
-				</label>
-				<label className={css.label}>
-					<span className={css.labelText}>Email:</span>
-					<Field className={css.formInput} placeholder="alex@patron.com" type="email" name="email" />
+				</div>
+				<div>
+					<label className={css.label} htmlFor="mailField">
+						Email:
+					</label>
+					<Field className={css.field} id="mailField" placeholder="wilsmith@fox.com" type="email" name="email" />
 					<ErrorMessage className={css.errorMsg} name="email" component="span" />
-				</label>
-				<label className={css.label}>
-					<span className={css.labelText}>Password:</span>
-					<Field className={css.formInput} placeholder="Enter your password" type="password" name="password" />
+				</div>
+				<div>
+					<label className={css.label} htmlFor="passwordField">
+						Password:
+					</label>
+					<Field className={css.field} id="passwordField" placeholder="Enter your password" type="password" name="password" />
 					<ErrorMessage className={css.errorMsg} name="password" component="span" />
-				</label>
+				</div>
 
-				<button className={css.submitBtn} type="submit" title="Click to register user" aria-label="Add new mailbox">
+				<button className={css.button} type="submit" title="Click to register new user" aria-label="Register user">
 					Register <IoPersonAddSharp />
 				</button>
 			</Form>
