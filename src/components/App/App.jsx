@@ -16,6 +16,7 @@ const ContactsPage = lazy(() => import("../../pages/ContactsPage/ContactsPage"))
 const App = () => {
 	const dispatch = useDispatch();
 	const { isRefreshing } = useSelector(selectIsRefreshing);
+	console.log("isRefreshing : ", isRefreshing);
 
 	useEffect(() => {
 		dispatch(refresh());
@@ -27,9 +28,30 @@ const App = () => {
 		<Layout>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/register" element={<RestrictedRoute redirectTo="/contacts" component={<RegistrationPage />} />} />
-				<Route path="/login" element={<RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />} />
-				<Route path="/contacts" element={<PrivateRoute redirectTo="/login" component={<ContactsPage />} />} />
+				<Route
+					path="/register"
+					element={
+						<RestrictedRoute>
+							<RegistrationPage />
+						</RestrictedRoute>
+					}
+				/>
+				<Route
+					path="/login"
+					element={
+						<RestrictedRoute>
+							<LoginPage />
+						</RestrictedRoute>
+					}
+				/>
+				<Route
+					path="/contacts"
+					element={
+						<PrivateRoute>
+							<ContactsPage />
+						</PrivateRoute>
+					}
+				/>
 			</Routes>
 		</Layout>
 	);

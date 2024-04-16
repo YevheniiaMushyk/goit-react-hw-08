@@ -5,7 +5,7 @@ import { register } from "../../redux/auth/operations";
 
 import { IoPersonAddSharp } from "react-icons/io5";
 
-import css from "./RegisterForm.module.css";
+import css from "./RegistrationForm.module.css";
 
 const UserRegisterSchema = Yup.object().shape({
 	name: Yup.string()
